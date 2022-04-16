@@ -41,6 +41,11 @@
 	padding: 0.5rem;
 }
 
+.NavBar li:hover {
+	background-color: var(--dark-grey);
+	cursor: pointer;
+}
+
 
 .active {
 	background-color: var(--dark-grey);

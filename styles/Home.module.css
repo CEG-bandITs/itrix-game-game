@@ -7,4 +7,35 @@
 
 .wrapper {
 	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	gap: 2rem;
+}
+
+.roundBox {
+	background-color: var(--blue);
+	text-align: center;
+	border-radius: 0.5rem;
+	padding: 0.4rem;
+	align-self: center;
+	cursor: pointer;
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.roundBox:hover {
+	background-color: var(--dark-blue);
+}
+
+.roundBox svg {
+	width: 1.4rem;
+}
+
+@media only screen and (min-width: 1024px) {
+	.roundBox {
+		font-size: 2rem;
+	}
 }
