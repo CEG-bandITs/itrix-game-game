@@ -1,0 +1,61 @@
+/*
+  Anything outside of media queries is for MOBILE
+  This is Mobile first approach.
+*/
+
+.MenuIcon {
+	background-color: var(--black);
+	fill: var(--white);
+	height: 2rem;
+	width: auto;
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.NavBar {
+	z-index: 1;
+	min-height: 100vh;
+	background-color: var(--black);
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.NavBar li svg {
+	width: 1.5rem;
+	height: auto;
+}
+
+
+.NavBar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.NavBar li {
+	padding: 0.5rem;
+}
+
+
+.active {
+	background-color: var(--dark-grey);
+}
+
+
+/* Above Tablet */
+@media only screen and (min-width: 1024px) {
+	.NavBar {
+		font-size: 0.8rem;
+		z-index: auto;
+		position: static;
+	}
+}
+
+/* Both Tablet and Mobile */
+@media only screen and (max-width: 1023px) {
+}
