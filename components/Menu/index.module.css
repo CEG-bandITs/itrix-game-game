@@ -2,65 +2,62 @@
   Anything outside of media queries is for MOBILE
   This is Mobile first approach.
 */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
 
 .MenuIcon {
-	background-color: var(--black);
-	fill: var(--white);
-	height: 2rem;
-	width: auto;
-	z-index: 1;
-	position: absolute;
-	top: 0;
-	left: 0;
+  background-color: var(--black);
+  fill: var(--white);
+  height: 2rem;
+  width: auto;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .NavBar {
-	z-index: 1;
-	min-height: 100vh;
-	background-color: var(--black);
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 0;
-	font-family: 'Open Sans';
+  z-index: 1;
+  min-height: 100vh;
+  background-color: var(--black);
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans";
 }
 
 .NavBar li svg {
-	width: 1.5rem;
-	height: auto;
+  width: 1.5rem;
+  height: auto;
 }
 
-
 .NavBar ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .NavBar li {
-	padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 .NavBar li:hover {
-	background-color: var(--dark-grey);
-	cursor: pointer;
+  background-color: var(--dark-grey);
+  cursor: pointer;
 }
-
 
 .active {
-	background-color: var(--dark-grey);
+  background-color: var(--dark-grey);
 }
-
 
 /* Above Tablet */
 @media only screen and (min-width: 1024px) {
-	.NavBar {
-		font-size: 0.8rem;
-		z-index: auto;
-		position: static;
-	}
+  .NavBar {
+    font-size: 0.8rem;
+    z-index: auto;
+    position: static;
+  }
 }
 
 /* Both Tablet and Mobile */
