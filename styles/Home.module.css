@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
 .main{
 	background-color: var(--grey);
 	color: var(--white);
@@ -12,11 +14,13 @@
 	justify-content: center;
 	align-content: center;
 	gap: 2rem;
+	font-family: 'Open Sans';
 }
 
 .roundBox {
 	background-color: var(--blue);
 	text-align: center;
+	font-weight: bolder;
 	border-radius: 0.5rem;
 	padding: 0.4rem;
 	align-self: center;
@@ -36,6 +40,6 @@
 
 @media only screen and (min-width: 1024px) {
 	.roundBox {
-		font-size: 2rem;
+		font-size: 1.5rem;
 	}
 }

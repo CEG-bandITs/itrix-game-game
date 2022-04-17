@@ -348,7 +348,10 @@ template {
   display: none;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
 :root{
+  font-family: 'Open Sans';
   font-size: clamp(1.6rem, 1.2rem + 1.2vmax, 5rem);
   --blue: #0083ca;
   --dark-blue: #006da8;
@@ -357,6 +360,7 @@ template {
   --grey: #545454;
   --dark-grey: #3f3f3f;
 }
+
 
 * {
   padding: 0;

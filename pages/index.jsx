@@ -2,9 +2,12 @@ import styles from "../styles/Home.module.css";
 import Menu from "../components/Menu"
 import Head from "next/head"
 import Link from "next/link"
+import React, { useEffect, useState } from "react"
 
 
 export default function Home() {
+  const size = useWindowSize()
+
   return (
     <>
     
@@ -15,7 +18,7 @@ export default function Home() {
     </Head>
     
     <main className={styles.main}>
-      <Menu loggedIn={true} desktop={true} />
+      <Menu loggedIn={true} desktop={size.width > 1024} />
       <div className={styles.wrapper}>
         <RoundBox link="/signin">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
@@ -47,4 +50,38 @@ function RoundBox(props){
       </div>
     </Link>
   )
+}
+
+
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
+  useEffect(() => {
+    // only execute all the code below in client side
+    if (typeof window !== 'undefined') {
+      // Handler to call on window resize
+      function handleResize() {
+        // Set window width/height to state
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+    
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+     
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+    
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
 }
