@@ -18,17 +18,14 @@ export default function Home() {
           <form>
             <h1>Sign Up</h1>
             <Email />
-            <PhoneNumber />
-            <input type="text" placeholder="College Name (if any)"></input>
             <Password placeHolder="Password"/>
-            <Password placeHolder="Confirm Password"/>
-            <input type="submit" value="Sign Up"></input>
+            <input type="submit" value="Sign In"></input>
           </form>
           <div className={styles.Already}>
-            <span>Aldready Have An account?</span>
+            <span>Don't have an account?</span>
             <Link href="/signin">
               <button>
-                Sign In
+                Sign up
               </button>
             </Link>
           </div>
@@ -40,29 +37,6 @@ export default function Home() {
   );
 }
 
-function PhoneNumber(){
-  const [hint, setHint] = useState(false)
-  const validateEmail = (e) => {
-    if ((/[0-9]{10}/g).test(e.target.value)){
-      e.target.style.border = "0.1rem solid green"
-      setHint(false)
-    } else {
-      e.target.style.border = "0.1rem solid red"
-      setHint(true)
-    }
-    if (e.target.value == ""){
-      setHint(false)
-      e.target.style.border = ""
-    }
-  };
-
-  return (
-    <>
-      <input type="tel" placeholder="Contact Number" autoComplete="on" onChange={(e) => validateEmail(e)}></input>
-      <span style={{display: hint ? '' : 'none'}}> Invalid Contact Number </span>
-    </>
-  )
-}
 
 function Email(){
   const [hint, setHint] = useState(false)
