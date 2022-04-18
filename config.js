@@ -1,7 +1,7 @@
 let configuration = {
   config: {
     currentDate: 0,
-    totalDays: 2, // Well Here 2 Means 3 days
+    totalDays: 2,
     levelQuestions: [
       [
         {

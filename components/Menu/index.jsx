@@ -11,11 +11,11 @@ let navLinks = [
   },
   {
     name: "Rules",
-    link: "/Rules",
+    link: "/rules",
   },
   {
     name: "LeaderBoard",
-    link: "/Leaderboard",
+    link: "/leaderboard",
   },
 ];
 
@@ -75,7 +75,7 @@ export default function Menu(props) {
 
           {props.loggedIn ? (
             <Link href="/">
-              <li onClick={logout()}>Logout</li>
+              <li onClick={() => logout()}>Logout</li>
             </Link>
           ) : (
             <></>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
 import { validEmail, validPassword } from "../utils/validation";
+import { useWindowSize } from "../libs/windowSize";
 
 export default function Home(props) {
   const router = useRouter();
@@ -28,6 +29,7 @@ export default function Home(props) {
       setserverResonse(res.msg);
     } else {
       setserverResonse("");
+      console.log(res);
       jsCookie.set("jwt", res.token);
       router.push("/");
     }
@@ -132,35 +134,29 @@ function Password(props) {
   );
 }
 
-function useWindowSize() {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
-  });
-
-  useEffect(() => {
-    // only execute all the code below in client side
-    if (typeof window !== "undefined") {
-      // Handler to call on window resize
-      function handleResize() {
-        // Set window width/height to state
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        });
-      }
-
-      // Add event listener
-      window.addEventListener("resize", handleResize);
-
-      // Call handler right away so state gets updated with initial window size
-      handleResize();
-
-      // Remove event listener on cleanup
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, []); // Empty array ensures that effect is only run on mount
-  return windowSize;
+export async function getServerSideProps(ctx) {
+  let result;
+  try {
+    result = jwt.verify(ctx.req.cookies.jwt, process.env.SECRET_KEY);
+    const response = await fetch("http://localhost:3000/api/question", {
+      headers: {
+        Cookie: "jwt=" + ctx.req.cookies.jwt,
+      },
+    });
+    const res = await response.json();
+    return {
+      props: {
+        authenticated: true,
+        email: result.email,
+        response: res,
+      },
+    };
+  } catch (e) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+      props: {},
+    };
+  }
 }
