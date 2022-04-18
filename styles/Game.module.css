@@ -20,15 +20,87 @@
 .QuestionBar {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  height: 40vh;
+  min-height: 40vh;
 }
 
 .QuestionBar img {
-  height: 35vh;
+  width: 60vw;
+  height: auto;
 }
 
 .QuestionBar svg {
-  height: 2rem;
+  width: 15vw;
+}
+
+.AnswerBar form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.AnswerBar form button {
+  order: 1;
+  padding: 0.2rem;
+  background-color: var(--blue);
+  min-width: 15%;
+  outline: 0;
+  border: 0;
+  color: var(--white);
+  border-radius: 0.2rem;
+}
+
+.AnswerBar form input[type="text"] {
+  order: 2;
+  padding: 0.2rem;
+  min-width: 60%;
+  outline: 0;
+  border: 0;
+  border-radius: 0.2rem;
+}
+
+.AnswerBar form input[type="submit"] {
+  order: 3;
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 0.2rem;
+  outline: 0;
+  min-width: 15%;
+  border: 0;
+  border-radius: 0.2rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .AnswerBar form {
+    flex-wrap: wrap;
+    align-content: space-evenly;
+    gap: 1rem;
+  }
+
+  .AnswerBar form input[type="text"] {
+    order: 1;
+    width: 90%;
+  }
+
+  .AnswerBar form button {
+    order: 2;
+    width: 40%;
+  }
+
+  .AnswerBar form input[type="submit"] {
+    order: 3;
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .QuestionBar img {
+    width: 15vw;
+  }
+
+  .QuestionBar img:hover {
+    zoom: 1.2;
+  }
 }

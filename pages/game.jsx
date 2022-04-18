@@ -6,8 +6,7 @@ import Menu from "../components/Menu";
 import { useWindowSize } from "../libs/windowSize";
 import {
   MobileQuestionBar,
-  DesktopAnswerBar,
-  MobileAnswerBar,
+  AnswerBar,
   DesktopQuestionBar,
 } from "../components/Game";
 import configuration from "../config";
@@ -44,7 +43,7 @@ export default function Game(props) {
               pointer={pointer}
               imgs={props.response.imgs}
             />
-            <MobileAnswerBar />
+            <AnswerBar />
           </div>
         </main>
       </>
@@ -58,7 +57,7 @@ export default function Game(props) {
           <Menu loggedIn={true} desktop={size.width > 1024} />
           <div className={styles.wrapper}>
             <DesktopQuestionBar imgs={props.response.imgs} />
-            <DesktopAnswerBar />
+            <AnswerBar />
           </div>
         </main>
       </>

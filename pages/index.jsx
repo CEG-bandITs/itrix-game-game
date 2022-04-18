@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Link from "next/link";
 import jwt from "jsonwebtoken";
 import { useWindowSize } from "../libs/windowSize";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function Home(props) {
   const size = useWindowSize();
@@ -86,24 +86,14 @@ export async function getServerSideProps(ctx) {
   let result;
   try {
     result = jwt.verify(ctx.req.cookies.jwt, process.env.SECRET_KEY);
-    const response = await fetch("http://localhost:3000/api/question", {
-      headers: {
-        Cookie: "jwt=" + ctx.req.cookies.jwt,
-      },
-    });
-    const res = await response.json();
     return {
       props: {
         authenticated: true,
         email: result.email,
-        response: res,
       },
     };
   } catch (e) {
     return {
-      redirect: {
-        destination: "/",
-      },
       props: {},
     };
   }

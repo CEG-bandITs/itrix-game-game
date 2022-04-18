@@ -45,10 +45,14 @@ export function DesktopQuestionBar(props) {
   );
 }
 
-export function DesktopAnswerBar() {
-  return <div className={styles.AnswerBar}></div>;
-}
-
-export function MobileAnswerBar() {
-  return <div className={styles.AnswerBar}></div>;
+export function AnswerBar() {
+  return (
+    <div className={styles.AnswerBar}>
+      <form action="">
+        <button>Hint</button>
+        <input type="text" name="answer" id="answer" />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  );
 }

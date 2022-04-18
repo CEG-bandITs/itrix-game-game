@@ -5,7 +5,7 @@ let configuration = {
     levelQuestions: [
       [
         {
-          imgs: ["1.png", "2.png", "3.png"],
+          imgs: ["1.png", "2.png", "3.png", "4.png", "5.png"],
           answer: ["elon", "musk", "test"],
           hints: ["Actor", "Author"],
         },

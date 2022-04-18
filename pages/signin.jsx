@@ -153,9 +153,6 @@ export async function getServerSideProps(ctx) {
     };
   } catch (e) {
     return {
-      redirect: {
-        destination: "/",
-      },
       props: {},
     };
   }
