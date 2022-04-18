@@ -4,7 +4,7 @@
 [✅] Home Before Login
 [✅] Sign Up
 [✅] Sign In
-[ ] Home After Login
+[✅] Home After Login
 [ ] LeaderBoard
 [ ] Game
 [ ] Rules

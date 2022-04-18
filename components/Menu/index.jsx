@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import Link from "next/link";
+import jsCookie from "js-cookie";
 import { useRouter } from "next/router";
 
 let navLinks = [
@@ -73,8 +74,8 @@ export default function Menu(props) {
           })}
 
           {props.loggedIn ? (
-            <Link href="/logout">
-              <li>Logout</li>
+            <Link href="/">
+              <li onClick={logout()}>Logout</li>
             </Link>
           ) : (
             <></>
@@ -82,4 +83,8 @@ export default function Menu(props) {
         </ul>
       </nav>
     );
+}
+
+function logout() {
+  jsCookie.remove("jwt");
 }

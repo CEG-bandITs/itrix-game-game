@@ -3,15 +3,19 @@ import Menu from "../components/Menu";
 import Header from "../components/Header";
 import styles from "../styles/SignInAndUp.module.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
+import { validEmail, validPassword } from "../utils/validation";
 
 export default function Home(props) {
+  const router = useRouter();
   const size = useWindowSize();
+  const [serverResonse, setserverResonse] = useState("");
   async function onSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
-    const response = await fetch("/api/login", {
+    const response = await fetch("/api/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,10 +24,11 @@ export default function Home(props) {
     });
     const res = await response.json();
     if (res.token == undefined) {
-      console.log("Invalid Email Or Pasword");
+      setserverResonse(res.msg);
     } else {
+      setserverResonse("");
       jsCookie.set("jwt", res.token);
-      console.log(res.token);
+      router.push("/");
     }
   }
   return (
@@ -36,6 +41,14 @@ export default function Home(props) {
           <div className={styles.card}>
             <form onSubmit={(e) => onSubmit(e)} method={"POST"}>
               <h1>Sign In</h1>
+              <span
+                style={{
+                  display: serverResonse != "" ? "block" : "none",
+                  color: "red",
+                }}
+              >
+                {serverResonse}
+              </span>
               <Email />
               <Password placeHolder="Password" />
               <input type="submit" value="Sign In"></input>
@@ -56,11 +69,7 @@ export default function Home(props) {
 function Email() {
   const [hint, setHint] = useState(false);
   const validateEmail = (e) => {
-    if (
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        e.target.value
-      )
-    ) {
+    if (validEmail(e.target.value)) {
       e.target.style.border = "0.1rem solid green";
       setHint(false);
     } else {
@@ -81,6 +90,7 @@ function Email() {
         name="email"
         autoComplete="on"
         onChange={(e) => validateEmail(e)}
+        required
       ></input>
       <span style={{ display: hint ? "" : "none" }}> Invalid Email </span>
     </>
@@ -90,7 +100,7 @@ function Email() {
 function Password(props) {
   const [hint, setHint] = useState(false);
   const validatePassword = (e) => {
-    if (e.target.value.length >= 8) {
+    if (validPassword(e.target.value)) {
       e.target.style.border = "0.1rem solid green";
       setHint(false);
     } else {
@@ -111,6 +121,7 @@ function Password(props) {
         name="password"
         autoComplete="on"
         onChange={(e) => validatePassword(e)}
+        required
       ></input>
       <span style={{ display: hint ? "" : "none" }}>
         {" "}

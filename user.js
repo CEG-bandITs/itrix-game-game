@@ -1,8 +1,15 @@
+import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+dotenv.config();
+
 const userSchema = new mongoose.Schema({
-  email: String,
+  email: {
+    type: String,
+    index: { unique: true },
+  },
   name: String,
+  number: String,
   college: String,
   password: String,
   score: [
@@ -39,6 +46,4 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-const Model = mongoose.model("User", userSchema);
-
-export default Model;
+module.exports = mongoose.models.User || mongoose.model("User", userSchema);

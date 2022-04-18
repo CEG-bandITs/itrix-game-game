@@ -7,14 +7,13 @@ import React, { useEffect, useState } from "react";
 
 export default function Home(props) {
   const size = useWindowSize();
-  const token = undefined;
 
   return (
     <>
       <Header />
 
       <main className={styles.main}>
-        <Menu loggedIn={true} desktop={size.width > 1024} />
+        <Menu loggedIn={props.authenticated} desktop={size.width > 1024} />
         <div className={styles.wrapper}>
           {!props.authenticated ? <UnAuthenticated /> : <Authenticated />}
         </div>
@@ -64,9 +63,11 @@ function UnAuthenticated() {
 function Authenticated() {
   return (
     <>
-      <RoundBox link="/signup" className={styles.authenticatedHome}>
-        <p>Play</p>
-        <p>Level10</p>
+      <RoundBox link="/signup">
+        <div className={styles.authenticatedHome}>
+          <p>Play</p>
+          <span>Level10</span>
+        </div>
       </RoundBox>
     </>
   );
@@ -113,25 +114,31 @@ function useWindowSize() {
   return windowSize;
 }
 
-export async function getServerSideProps() {
-  let email;
-  try {
-    email = jwt.verify(
-      cookie.parse(req.headers.cookie).jwt,
-      process.env.SECRET_KEY
-    );
-    console.log(email);
-  } catch (e) {
+export async function getServerSideProps(ctx) {
+  if (ctx.req.cookies.jwt == undefined) {
     return {
       props: {
         authenticated: false,
       },
     };
   }
-  return {
-    props: {
-      authenticated: true,
-      email: email,
-    },
-  };
+  let result;
+  try {
+    result = jwt.verify(ctx.req.cookies.jwt, process.env.SECRET_KEY);
+    return {
+      props: {
+        authenticated: true,
+        email: result.email,
+      },
+    };
+  } catch (e) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+      props: {
+        authenticated: false,
+      },
+    };
+  }
 }

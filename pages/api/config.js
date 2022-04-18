@@ -7,7 +7,7 @@ export default function handler(req, res) {
       configuration.config.totalDays
     ) {
       configuration.config = req.body;
-      res.json({ msg: "Sucessfull Updated" });
+      res.json({ msg: "Sucessfully Updated" });
     } else {
       res.json({ msg: "Not Sucessfull Updated (Length Not Matching)" });
     }
