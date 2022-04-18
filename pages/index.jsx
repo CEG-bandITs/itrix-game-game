@@ -63,7 +63,7 @@ function UnAuthenticated() {
 function Authenticated() {
   return (
     <>
-      <RoundBox link="/signup">
+      <RoundBox link="/game">
         <div className={styles.authenticatedHome}>
           <p>Play</p>
           <span>Level10</span>

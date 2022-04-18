@@ -5,21 +5,26 @@ let configuration = {
     levelQuestions: [
       [
         {
-          imgs: ["1234.jpg", "5678.jpg", "9101.jpg"],
+          imgs: ["1.png", "2.png", "3.png"],
+          answer: ["elon", "musk", "test"],
+          hints: ["Actor", "Author"],
+        },
+        {
+          imgs: ["2.png", "3.png", "4.png"],
           answer: ["elon", "musk", "test"],
           hints: ["Actor", "Author"],
         },
       ],
       [
         {
-          imgs: ["1234.jpg", "5678.jpg", "9101.jpg"],
+          imgs: ["2.png", "3.png", "4.png"],
           answer: ["elon", "musk", "test"],
           hints: ["Actor", "Author"],
         },
       ],
       [
         {
-          imgs: ["1234.jpg", "5678.jpg", "9101.jpg"],
+          imgs: ["1.png", "2.png", "3.png"],
           answer: ["elon", "musk", "test"],
           hints: ["Actor", "Author"],
         },

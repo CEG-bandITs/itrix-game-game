@@ -23,16 +23,30 @@ export default async function handler(req, res) {
   ) {
     req.body.password = hash(req.body.password);
     try {
-      const user = await UserModel.create(req.body);
+      const newUser = req.body;
+      newUser.score = [
+        {
+          level: 0,
+        },
+        {
+          level: 0,
+        },
+        {
+          level: 0,
+        },
+      ];
+      const user = await UserModel.create(newUser);
     } catch (e) {
       if (e.code == 11000) {
         res.status(400).json({
           msg: "Aldready User Exists With This Email ID",
         });
+        return;
       } else {
         res.status(500).json({
           msg: "Internal Server Error",
         });
+        return;
       }
     }
     res.json({

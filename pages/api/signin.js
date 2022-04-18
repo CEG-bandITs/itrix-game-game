@@ -24,6 +24,12 @@ export default async function handler(req, res) {
 
   const user = await UserModel.find({ email: req.body.email });
 
+  if (user.length == 0) {
+    res.json({
+      msg: "User not created. Sign Up",
+    });
+  }
+
   console.log(user[0].password, hash(req.body.password));
   if (hash(req.body.password) == user[0].password) {
     const token = jwt.sign({ email: req.body.email }, process.env.SECRET_KEY);
