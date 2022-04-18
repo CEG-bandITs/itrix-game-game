@@ -1,13 +1,10 @@
 import { verify } from "jsonwebtoken";
 import mongoose from "mongoose";
-import UserModel from "../../user";
+import UserModel from "../../models/user";
 import configuration from "../../config";
+import connectDB from "../../middleware/mongodb";
 
-mongoose.connect(process.env.MONGODB_URL, () => {
-  console.log("Connected to MongoDB");
-});
-
-export default async function handler(req, res) {
+async function handler(req, res) {
   if (req.cookies.jwt == undefined) {
     res.json({
       msg: "No JWT",
@@ -39,3 +36,5 @@ export default async function handler(req, res) {
     hints: configuration.config.levelQuestions[currentDate][level].hints,
   });
 }
+
+export default connectDB(handler);

@@ -1,4 +1,4 @@
-import UserModel from "../../user";
+import UserModel from "../../models/user";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import {
@@ -8,14 +8,11 @@ import {
   validPassword,
 } from "../../utils/validation";
 import jwt from "jsonwebtoken";
-
-mongoose.connect(process.env.MONGODB_URL, () => {
-  console.log("Connected to MongoDB");
-});
+import connectDB from "../../middleware/mongodb";
 
 dotenv.config();
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   if (
     validEmail(req.body.email) &&
     validPassword(req.body.password) &&
@@ -59,3 +56,5 @@ export default async function handler(req, res) {
     msg: "Either Invalid Email or Invalid Phone Number or Invalid Password",
   });
 }
+
+export default connectDB(handler);

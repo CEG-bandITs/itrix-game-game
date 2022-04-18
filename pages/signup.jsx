@@ -19,7 +19,6 @@ export default function Home() {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
-    console.log(JSON.stringify(formProps));
     const response = await fetch("/api/signup", {
       method: "POST",
       headers: {

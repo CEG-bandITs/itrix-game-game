@@ -19,6 +19,7 @@ export default function Home(props) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Cookie: "jwt=" + jsCookie.get("jwt"),
       },
       body: JSON.stringify(formProps),
     });
